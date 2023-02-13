@@ -5,9 +5,10 @@ var argv = require("minimist")(process.argv.slice(2));
 var input_path = argv.input || argv.i;
 var output_path = argv.output || argv.o;
 var mess_with_percussion = argv.percussion || argv.p;
+var transpose = argv.tranpose || argv.t
 
 var fn = function(n, event){
-	return 127 - n;
+	return n + transpose;
 };
 
 var fs = require("fs");
