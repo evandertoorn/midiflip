@@ -21,25 +21,31 @@
 		
 		var midiFile = new MIDIFile(arrayBuffer);
 		
-		for(var track_index = 0; track_index < 1; track_index++){
+		for(var track_index = 0; track_index < midiFile.tracks.length; track_index++){
 			console.log("track_index: ", track_index)
-			var tntmwp = false;
-			var events = midiFile.getTrackEvents(track_index);
-			for(var i=0; i<events.length; i++){
-				var event = events[i];
-				if(event.type === MIDIEvents.EVENT_MIDI){
-					if(event.subtype === MIDIEvents.EVENT_MIDI_NOTE_OFF || event.subtype === MIDIEvents.EVENT_MIDI_NOTE_ON){
-						var isPercussion = event.channel === 9 || event.channel === 10; // Channel 10 or 11
-						// NOTE: I don't think channel 11 (coded 10) is guaranteed to be percussion.
-						if(!isPercussion || mess_with_percussion){
-							// TODO: account for randomness in fn by transforming NOTEOFFs the same as the previous NOTEON
-							// can keep a map of midi note numbers to what the previous NOTEON was transformed to
-							event.param1 = fn(event.param1, {channel: event.channel, isPercussion: isPercussion});
+			
+			if(track_index == 1){
+				var tntmwp = false;
+				var events = midiFile.getTrackEvents(track_index);
+				for(var i=0; i<events.length; i++){
+					var event = events[i];
+					if(event.type === MIDIEvents.EVENT_MIDI){
+						if(event.subtype === MIDIEvents.EVENT_MIDI_NOTE_OFF || event.subtype === MIDIEvents.EVENT_MIDI_NOTE_ON){
+							var isPercussion = event.channel === 9 || event.channel === 10; // Channel 10 or 11
+							// NOTE: I don't think channel 11 (coded 10) is guaranteed to be percussion.
+							if(!isPercussion || mess_with_percussion){
+								// TODO: account for randomness in fn by transforming NOTEOFFs the same as the previous NOTEON
+								// can keep a map of midi note numbers to what the previous NOTEON was transformed to
+								event.param1 = fn(event.param1, {channel: event.channel, isPercussion: isPercussion});
+							}
 						}
 					}
 				}
+				midiFile.setTrackEvents(track_index, events);
 			}
-			midiFile.setTrackEvents(track_index, events);
+			else {
+				midiFile.deleteTrack(track_index)
+			}
 		}
 		
 		return midiFile.getContent();
