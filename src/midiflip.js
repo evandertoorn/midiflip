@@ -45,6 +45,7 @@
 			}
 			else {
 				midiFile.deleteTrack(track_index)
+				console.log("tracks.length: ", midiFile.tracks.length)
 			}
 		}
 		
