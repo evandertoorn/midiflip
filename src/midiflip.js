@@ -21,7 +21,7 @@
 		
 		var midiFile = new MIDIFile(arrayBuffer);
 		
-		for(var track_index = 0; track_index < midiFile.tracks.length; track_index++){
+		for(var track_index = 0; track_index < 1; track_index++){
 			console.log("track_index: ", track_index)
 			var tntmwp = false;
 			var events = midiFile.getTrackEvents(track_index);
