@@ -1,6 +1,7 @@
 #! /usr/bin/env node
 
 var argv = require("minimist")(process.argv.slice(2));
+console.log("argv", argv)
 
 var input_path = argv.input || argv.i;
 var output_path = argv.output || argv.o;
