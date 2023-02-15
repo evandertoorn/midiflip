@@ -17,7 +17,7 @@ var fn = function(n, event){
 	}
 	else if (transpose.substring(0,1) == "-"){
 		console.log("minus")
-		return n + Number(transpose.substring(1));
+		return n - Number(transpose.substring(1));
 	}
 	else
 	{
