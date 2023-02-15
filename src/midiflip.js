@@ -22,9 +22,9 @@
 		var midiFile = new MIDIFile(arrayBuffer);
 		
 		for(var track_index = 0; track_index < midiFile.tracks.length; track_index++){
-			console.log("track_index: ", track_index)
+			//console.log("track_index: ", track_index)
 			
-			if(track_index == 1){
+			//if(track_index == 1){
 				var tntmwp = false;
 				var events = midiFile.getTrackEvents(track_index);
 				for(var i=0; i<events.length; i++){
@@ -42,11 +42,11 @@
 					}
 				}
 				midiFile.setTrackEvents(track_index, events);
-			}
-			else {
-				midiFile.deleteTrack(track_index)
-				console.log("tracks.length: ", midiFile.tracks.length)
-			}
+			//}
+			//else {
+			//	midiFile.deleteTrack(track_index)
+			//	console.log("tracks.length: ", midiFile.tracks.length)
+			//}
 		}
 		
 		return midiFile.getContent();
