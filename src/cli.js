@@ -8,18 +8,18 @@ var mess_with_percussion = argv.percussion || argv.p;
 var transpose = argv.tranpose || argv.t
 
 var fn = function(n, event){
-	if(transpose.substring(0,1) == "+"){
+	if(transpose.substr(0,1) == "+"){
 		console.log("plus")
-		return n + Number(transpose.substring(1));
+		return n + Number(transpose.substr(1));
 	}
-	else if (transpose.substring(0,1) == "-"){
+	else if (transpose.substr(0,1) == "-"){
 		console.log("minus")
-		return n + Number(transpose.substring(1));
+		return n + Number(transpose.substr(1));
 	}
 	else
 	{
 		console.log("plus(not explicit)")
-		return n + Number(transpose.substring(1));
+		return n + Number(transpose.substr(1));
 	}
 
 };
