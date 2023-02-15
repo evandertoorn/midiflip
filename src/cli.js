@@ -8,7 +8,20 @@ var mess_with_percussion = argv.percussion || argv.p;
 var transpose = argv.tranpose || argv.t
 
 var fn = function(n, event){
-	return n + transpose;
+	if(transpose.startsWith("+")){
+		console.log("plus")
+		return n + Number(transpose.substring(1));
+	}
+	else if (transpose.startsWith("-")){
+		console.log("minus")
+		return n + Number(transpose.substring(1));
+	}
+	else
+	{
+		console.log("plus(not explicit)")
+		return n + Number(transpose.substring(1));
+	}
+
 };
 
 var fs = require("fs");
