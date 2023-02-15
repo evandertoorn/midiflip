@@ -10,7 +10,7 @@ var transpose = argv.tranpose || argv.t
 
 var fn = function(n, event){
 	transpose = String(transpose)
-	console.log("transpose", transpose)
+	console.log("transpose", transpose.substring(1))
 	if(transpose.substring(0,1) == "+"){
 		console.log("plus")
 		return n + Number(transpose.substring(1));
